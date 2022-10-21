@@ -15,6 +15,11 @@ class CreateServiceSubTypesTable extends Migration
     {
         Schema::create('service_sub_types', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('service_type_id')->references('id')->on('service_types');
+            $table->string('sub_type_name');
+            $table->float('price')->nullable();
+            $table->integer('status')->default(1)->comment('1:Active, 0:Blocked');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

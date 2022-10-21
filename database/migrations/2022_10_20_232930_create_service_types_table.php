@@ -15,6 +15,13 @@ class CreateServiceTypesTable extends Migration
     {
         Schema::create('service_types', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('service_id')->references('id')->on('services');
+            $table->string('service_type_english');
+            $table->string('service_type_arabic');
+            $table->integer('has_sub_type')->default(0)->comment('1:Yes, 0:No');
+            $table->float('price')->nullable();
+            $table->integer('status')->default(1)->comment('1:Active, 0:Blocked');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

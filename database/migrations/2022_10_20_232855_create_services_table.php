@@ -15,6 +15,10 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->string('service_name_english');
+            $table->string('service_name_arabic');
+            $table->integer('status')->default(1)->comment('1:Active, 0:Blocked');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

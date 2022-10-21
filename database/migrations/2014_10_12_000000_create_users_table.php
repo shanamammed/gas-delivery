@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('user_type')->default(1)->comment('1:Admin');
-            $table->integer('status')->default(1)->comment('1:Active, 2:Blocked');
+            $table->string('user_type')->default(1)->comment('1:Admin, 2:Customer, 3:Driver');
+            $table->integer('status')->default(1)->comment('1:Active, 0:Blocked');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -15,6 +15,11 @@ class CreateDriversTable extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('mobile')->unique();
+            $table->string('email')->nullable();
+            $table->string('id_proof');
+            $table->integer('status')->default(1)->comment('1:Active, 0:Blocked');
             $table->timestamps();
         });
     }
