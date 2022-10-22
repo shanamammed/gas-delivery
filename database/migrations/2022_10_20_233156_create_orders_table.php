@@ -15,6 +15,18 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->references('id')->on('users')->ondelete('cascade');
+            $table->foreignId('service_id')->references('id')->on('services')->ondelete('cascade');
+            $table->string('service_type');
+            $table->string('sub_type')->nullable();
+            $table->integer('quantity');
+            $table->decimal('total');
+            $table->text('notes');
+            $table->integer('order_delivered_by')->nullable();
+            $table->datetime('booked_at');
+            $table->datetime('approved_at')->nullable();
+            $table->datetime('completed_at')->nullable();
+            $table->integer('status')->default(1)->comment('1:Pending, 2:Approved, 3:Completed, 4:Cancelled');
             $table->timestamps();
         });
     }

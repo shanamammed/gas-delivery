@@ -15,7 +15,7 @@ class CreateServiceTypesTable extends Migration
     {
         Schema::create('service_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->references('id')->on('services');
+            $table->foreignId('service_id')->references('id')->on('services')->ondelete('cascade');
             $table->string('service_type_english');
             $table->string('service_type_arabic');
             $table->integer('has_sub_type')->default(0)->comment('1:Yes, 0:No');
