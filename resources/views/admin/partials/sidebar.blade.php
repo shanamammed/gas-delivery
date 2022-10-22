@@ -45,7 +45,7 @@
               <ul class="metismenu" id="side-menu">
                   <li class="menu-title">Navigation</li>
                   <li>
-                      <a href="{{ url('/dashboard') }}">
+                      <a href="{{ url('/admin/dashboard') }}">
                           <i class="fa fa-dashcube"></i><span> Dashboard </span>
                       </a>
                   </li>
@@ -56,7 +56,7 @@
                       </ul>
                   </li> -->
                   <li>
-                      <a href="#"><i class="fa fa-coffee"></i> <span> Services </span> <span class="menu-arrow"></span></a>
+                      <a href="#"><i class="fa fa-tag"></i> <span> Services </span> <span class="menu-arrow"></span></a>
                       <ul class="nav-second-level" aria-expanded="false">
                           <li><a href="{{ url('/admin/services') }}">Manage Services</a></li>
                           <li><a href="{{ url('/admin/services/add') }}">Add Service</a></li>
