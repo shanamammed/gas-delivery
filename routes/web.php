@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('/login', [LoginController::class, 'postLogin'])->name('adminLoginPost');
 /*middleware starts from here*/
     Route::group(['middleware' => 'adminauth'], function () {
+        Route::get('/logout', [LoginController::class, 'logout'])->name('adminLogout');
         Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
         Route::get('/services', [ServiceController::class, 'index'])->name('services');
         Route::get('/services/add', [ServiceController::class, 'add'])->name('serviceAdd');

@@ -13,18 +13,18 @@
       </div>
       <nav class="navbar-custom">
           <ul class="list-unstyled topbar-right-menu float-right mb-0">
-              <li class="dropdown notification-list">
-                  <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
-                     aria-haspopup="false" aria-expanded="false">
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                    
-                    <a href="{{ url('/') }}" class="dropdown-item notify-item">
-                        <i class="fi-power"></i> <span>Logout</span>
-                    </a>
-                  </div>
-              </li>
-          </ul>
+           <li class="dropdown notification-list">
+              <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                 aria-haspopup="false" aria-expanded="false">
+              <span class="ml-1">ADMIN<i class="mdi mdi-chevron-down"></i> </span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                 <a href="{{ url('/admin/logout') }}" class="dropdown-item notify-item">
+                 <i class="fi-powe"></i> <span>Log Out</span>
+                 </a>
+              </div>
+           </li>
+        </ul>
 
           <ul class="list-inline menu-left mb-0 float-left">
               <li class="float-left">
