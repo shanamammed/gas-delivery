@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="page-title-box">
-                  <h4 class="page-title float-left">PRODUCTS</h4>
+                  <h4 class="page-title float-left">SERVICES</h4>
                  
                   <div class="clearfix"></div>
                 </div>
@@ -37,14 +37,9 @@
                       @foreach($services as $service)
                         <tr>
                           <td>{{ $service->service_name_english }}<br> {{ $service->service_name_arabic }}</td>
-                          <td><a href="{{ url('/admin/services/details',$service->id)}}" class="btn btn-primary">View</a></td>
+                          <td><a href="{{ url('/admin/services/details',$service->id)}}" class="btn btn-alert">View</a></td>
                           <td><a href="{{ url('/admin/services/edit', $service->id) }}" class="btn btn-primary">Edit</a></td>
-                          <td>
-                             <form action="{{ route('serviceDestroy', $service->id)}}" method="post">
-                               @csrf
-                               @method('DELETE')
-                              <button class="btn btn-danger" type="submit">Delete</button>
-                            </form>
+                          <td><a href="{{ url('/admin/services/delete', $service->id) }}" class="btn btn-danger">Delete</a>
                           </td>
                         </tr>
                       @endforeach 
@@ -61,9 +56,9 @@
   </body>
   @include("admin.partials.scripts")
   @include("admin.partials.table-scripts")
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     $('#datatable').DataTable({
            "ordering": false
            });
-  </script> 
+  </script>  -->
 </html>
