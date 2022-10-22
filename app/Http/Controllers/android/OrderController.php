@@ -36,14 +36,23 @@ class OrderController extends Controller
             $res    = sendResponse('false', $data = [], $message = $errors, $code = 422);
         }
         else
-        {
+        {   
+            $service_type = DB::table('service_types')->select('service_type_english','service_type_arabic')->where('id',$fields['service_type_id'])->first();
+            $service_type_name= $service_type->service_type_english.'/'.$service_type->service_type_arabic;
+            $sub_type = DB::table('service_sub_types')->select('sub_type_name')->where('id',$fields['sub_type_id'])->first(); 
+            if($sub_type){
+              $sub_type_name = $sub_type->sub_type_name;
+            } else {
+               $sub_type_name = '';
+            }
+
             $user                      = auth('sanctum')->user();
             $order                     = new Order;
             $order->user_id            = $user->id;
             $order->service_id         = $fields['service_id'];
             $order->quantity           = $fields['quantity'];
-            $order->service_type_id    = $fields['service_type_id'];
-            $order->sub_type_id        = $fields['sub_type_id'];
+            $order->service_type       = $service_type_name;
+            $order->sub_type           = $sub_type_name;
             $order->total              = $fields['total'];
             $order->booked_at          = date('Y-m-d H:i:s');
             $order->notes              = $fields['notes'];

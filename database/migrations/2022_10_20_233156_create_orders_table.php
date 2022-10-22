@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('sub_type')->nullable();
             $table->integer('quantity');
             $table->decimal('total');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->integer('order_delivered_by')->nullable();
             $table->datetime('booked_at');
             $table->datetime('approved_at')->nullable();
