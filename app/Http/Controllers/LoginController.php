@@ -10,6 +10,11 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Admin;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -83,5 +88,53 @@ class LoginController extends Controller
         \Session::flush();
         \Sessioin::put('success','You are logout successfully');        
         return redirect(route('adminLogin'));
+    }
+
+    /*User Login*/
+    public function user(Request $request)
+    {
+        $fields    = $request->input();
+        $validator = Validator::make($request->all(), [
+                'username' => 'required',
+                'password' => 'required',
+            ],
+            [
+                'username.required' => 'Please enter the email id or mobile number.',
+                'password.required' => 'Please enter the password.',
+            ]
+        );
+        if ($validator->fails()) 
+        {
+            $errors = collect($validator->errors());
+            $res = sendResponse('false', $data = [], $message = $errors, $code = 422);
+        } 
+        else 
+        {
+            $username = $fields['username'];
+            $user     = new User;
+            $check    = User::where('email', $username)->where('user_type', '2')->first();
+            if ($check) {
+                   if(Hash::check($fields['password'], $check->password))
+                    {
+                        if($check->status=='1') 
+                        {
+                            $user_details = DB::table('users')->select('id','name','email')->where('user_type','2')->where('id', $check->id)->first();
+                            /* Create Token */
+                            $token = $check->createToken('my-app-token')->plainTextToken;
+                            $user_details->token = $token;
+
+                            $res = sendResponse('true', $data = $user_details, $message = 'You have logged in successfully.', $code = 200);
+
+                        } else {
+                            $res = sendResponse('false', $data = [], $message = 'Your account has been blocked by admin.', $code = 400);
+                        }
+                    } else {
+                        $res = sendResponse('false', $data = [], $message = ['password' => ['Invalid pasword']], $code = 422);
+                    }    
+            } else {
+                $res = sendResponse('false', $data = [], $message = ['email' => ['Invalid email address.']], $code = 422);
+            }
+        }
+        return $res;
     }
 }
