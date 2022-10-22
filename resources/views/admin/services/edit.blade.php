@@ -151,7 +151,7 @@
     function addRow1(id)
     {   
       im      = imm+id; 
-      alert(im); 
+      // alert(im); 
       imageid = 'image' + im;
       inputid = 'img' + im;
       preview = 'preview' + im;
