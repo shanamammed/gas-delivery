@@ -49,12 +49,16 @@
                           <i class="fa fa-dashcube"></i><span> Dashboard </span>
                       </a>
                   </li>
-                  <!-- <li>
+                  <li>
                       <a href="#"><i class="fa fa-shopping-cart"></i> <span> Orders </span> <span class="menu-arrow"></span></a>
                       <ul class="nav-second-level" aria-expanded="false">
-                        
+                          <li><a href="{{ url('/admin/orders/pending') }}">Pending Orders</a></li>
+                          <li><a href="{{ url('/admin/orders/approved') }}">Approved Orders</a></li>
+                          <li><a href="{{ url('/admin/orders/completed') }}">Completed Orders</a></li>
+                          <li><a href="{{ url('/admin/orders/cancelled') }}">Cancelled Orders</a></li>
+
                       </ul>
-                  </li> -->
+                  </li>
                   <li>
                       <a href="#"><i class="fa fa-tag"></i> <span> Services </span> <span class="menu-arrow"></span></a>
                       <ul class="nav-second-level" aria-expanded="false">
